@@ -1,4 +1,4 @@
-// Javascript file
+//Fetch the json file data and calculate pages needed. Also controls the construction of all the pages using the functions below.
 $.getJSON('favs.json', function(data) {
   readData = data;
 	console.log(data);
@@ -23,9 +23,9 @@ $.getJSON('favs.json', function(data) {
 	endPage(page);
 });
 
-
+//Build the content on each page
 function makeContent(data, id, tweetid){
-	//$("#page"+id).append("<div class='tweetList' data-role='content'>"+JSON.stringify(data)+"</div>");
+
 	var tweetid = tweetid - 1;
 	var text = data.text;
 	var date = data.created_at;
@@ -89,16 +89,9 @@ function makeContent(data, id, tweetid){
 		}
 		$.mobile.changePage(href,  'pop', false, true);
 	});
-//Stuff we need
-/*
-	data=> "created_at"
-	data=> "text"
-	data=> "user" for user display
-	data=> "entities" => "urls" => "expanded_url"			urls
-	data=> "entities" => "media" =>"expanded_url"  		photos
-*/
 }
 
+//Build opening of each page
 function startPage( id){
 	var prev = parseInt(id) - 1;
 	if(prev == 0){
@@ -112,6 +105,7 @@ function startPage( id){
 	$("#page"+id).append("<div class='tweetList' data-role='content'><ul data-role='listview' data-inset='false' data-filter='true'></ul></div>");
 }
 
+//Build ending of each page
 function endPage( id){
 	$("#page"+id).append("<div class='pageFooter' data-role='footer'><h4></h4></div>");
 	for(var i = 1; i <= maxPage; i++){
@@ -156,5 +150,3 @@ $( document ).on( "pageinit", "[data-role='page'].listPage", function() {
         $( ".control .prev", page ).addClass( "ui-disabled" );
     }
 });
-
-
