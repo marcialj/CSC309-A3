@@ -1,0 +1,57 @@
+NOTE:
+We used the online version of GitHub throughout the entire assignment, and therefore, we could not generate a log file.
+So, instead, we copied the activity log of the group's repository.
+
+NOTE:
+We have used one account for the most of our assignment. We all have contibuted into the assignment process.
+
+
+Update README.txt03/30/13 22:21m README.txt
+
+      Update README.txtFinal revision of a3.css03/30/13 22:19m a3.css
+
+      Final revision of a3.cssFinal revision of a3.js03/30/13 22:18m a3.js
+
+      Final revision of a3.jsFinal revision of a3.html03/30/13 22:18m a3.html
+
+      Final revision of a3.htmlCleaned up comments03/30/13 21:10m a3.js
+
+      Cleaned up commentsAdded swipe events to ctrl list view03/30/13 20:47m a3.js
+
+      Added swipe events to ctrl list view
+
+added class names to user info fieldsMerge pull request #3 from c8chenyk/patch-103/30/13 20:18m a3.js
+
+      Merge pull request #3 from c8chenyk/patch-1
+
+Add User Info and tweet text to popupsAdd User Info and tweet text to popups03/30/13 20:15m a3.js
+
+      Add User Info and tweet text to popups
+
+Also implemented accordion to show tweet details vs user details in the popupsUpdate a3.html03/28/13 18:07m a3.html
+
+      Update a3.htmlUpdate a3.js03/28/13 18:07m a3.js
+
+      Update a3.jsUpdate a3.js03/28/13 15:47m a3.js
+
+      Update a3.jsUpdate a3.html03/28/13 15:42m a3.html
+
+      Update a3.htmlUpdate a3.html03/28/13 15:39m a3.html
+
+      Update a3.htmlUpdate a3.html03/28/13 15:33m a3.html
+
+      Update a3.htmlUpdate a3.html03/28/13 15:29m a3.html
+
+      Update a3.htmlCreate a3.css03/28/13 15:21+ a3.css
+
+      Create a3.cssCreate a3.html03/28/13 15:20+ a3.html
+
+      Create a3.htmlCreate a3.js03/28/13 15:19+ a3.js
+
+      Create a3.jsMerge pull request #1 from g0kwanma/patch-103/28/13 15:16m README.txt
+
+      Merge pull request #1 from g0kwanma/patch-1
+
+Update README.txtUpdate README.txt03/28/13 15:15m README.txt
+
+      Update README.txt
