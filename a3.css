@@ -1,1 +1,101 @@
-# CSS file
+/* CSS file */
+
+/* jumbo version (more than 500 pixels) */
+@media screen and (min-width: 500px) {
+
+  .ui-li .ui-btn-text a.ui-link-inherit {
+    	overflow: hidden;
+   	text-overflow: ellipsis;
+    	white-space: normal;
+	}
+
+	.listPage {
+	max-width:800px;
+	display: inline-block;
+	}
+
+	.tweetInfo {
+	font-size: 16px;
+	}
+
+	.tweetPics {
+	display: inline-block;
+	width: 45%;
+	}
+
+	.tweetUrls {
+	display: inline-block;
+	width: 45%;
+	text-align: right;
+	vertical-align: top;
+	}
+
+	.userInfo {
+	font-size: 12px;
+	position: relative;
+	bottom: 50px;
+	left: 65px;
+	}
+
+	.userBio {
+	font-size: 12px;
+	position: relative;
+	top: 10px;
+	right: 65px;
+	padding-bottom:10px;
+	}
+
+	.userDesc {
+	font-size: 14px;
+	position: relative;
+	top: 10px;
+	right: 65px;
+	padding-bottom:10px;
+	}
+
+	.userFollowers, .userFriends, .userListed {
+	font-size: 12px;
+	position: relative;
+	top: 10px;
+	right: 65px;
+	}
+
+}
+
+/* mini version (less than 500 pixels) */
+@media screen and (max-width: 500px) {
+	.tweetInfo {
+	font-size: 16px;
+	}
+
+	.userInfo {
+	font-size: 12px;
+	position: relative;
+	bottom: 50px;
+	left: 65px;
+	}
+
+	.userBio {
+	font-size: 12px;
+	position: relative;
+	top: 10px;
+	right: 65px;
+	padding-bottom:10px;
+	}
+
+	.userDesc {
+	font-size: 14px;
+	position: relative;
+	top: 10px;
+	right: 65px;
+	padding-bottom:10px;
+	}
+
+	.userFollowers, .userFriends, .userListed {
+	font-size: 12px;
+	position: relative;
+	top: 10px;
+	right: 65px;
+	}
+
+}
