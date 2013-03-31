@@ -71,21 +71,21 @@ function makeContent(data, id, tweetid){
 				}
 			var userDesc = "";
 			if(readData[id].user.description != undefined && readData[id].user.description != ""){
-					userDesc = "<div>"+readData[id].user.description+"</div>"
+					userDesc = "<div class='userDesc'>"+readData[id].user.description+"</div>"
 				}
 			var userFollowers = "";
 			if(readData[id].user.followers_count != undefined){
-					userFollowers = "<div>Followers: "+readData[id].user.followers_count+"</div>"
+					userFollowers = "<div class='userFollowers'>Followers: "+readData[id].user.followers_count+"</div>"
 				}
 			var userFriends = "";
 			if(readData[id].user.friends_count != undefined){
-					userFriends = "<div>Friends: "+readData[id].user.friends_count+"</div>"
+					userFriends = "<div class='userFriends' >Friends: "+readData[id].user.friends_count+"</div>"
 				}
 			var userListed = "";
 			if(readData[id].user.listed_count != undefined){
-					userListed = "<div>Listed: "+readData[id].user.listed_count+"</div>"
+					userListed = "<div class='userListed'>Listed: "+readData[id].user.listed_count+"</div>"
 				}
-			$("#tweet"+id+" .tweetDetails .userInfo").append("<h3>"+readData[id].user.screen_name+"</h3><div>Name:"+readData[id].user.name+userLocation+userUrl+"</div>"+userDesc+userFollowers+userFriends+userListed);
+			$("#tweet"+id+" .tweetDetails .userInfo").append("<h3>"+readData[id].user.screen_name+"</h3><div class='userBio'>Name:"+readData[id].user.name+userLocation+userUrl+"</div>"+userDesc+userFollowers+userFriends+userListed);
 		}
 		$.mobile.changePage(href,  'pop', false, true);
 	});
@@ -100,14 +100,61 @@ function makeContent(data, id, tweetid){
 }
 
 function startPage( id){
-	$("body").append("<div data-role='page' id='page"+id+"'> <div data-role='header'><h1>"+id+"</h1></div></div>");
+	var prev = parseInt(id) - 1;
+	if(prev == 0){
+			prev = maxPage;
+		}
+	var next = parseInt(id) + 1;
+	if(next > maxPage){
+			next = 1;		
+		}
+	$("body").append("<div class='listPage' data-role='page' data-prev='page"+prev+"' data-next='page"+next+"' id='page"+id+"'> <div data-role='header'><h1>Tweet List: "+id+"</h1></div></div>");
 	$("#page"+id).append("<div class='tweetList' data-role='content'><ul data-role='listview' data-inset='false' data-filter='true'></ul></div>");
 }
 
 function endPage( id){
-	$("#page"+id).append("<div class='pageFooter' data-role='footer'><h4>Page Footer</h4></div>");
+	$("#page"+id).append("<div class='pageFooter' data-role='footer'><h4></h4></div>");
 	for(var i = 1; i <= maxPage; i++){
-		$("#page"+id+" > .pageFooter").append("<a href='#page"+i+"'>"+i+"</a>");
+		$("#page"+id+" > .pageFooter h4").append("&nbsp;<a href='#page"+i+"'>"+i+"</a>&nbsp;");
 	}
 }
+
+//Add swipe event detection on list view.	
+$( document ).on( "pageinit", "[data-role='page'].listPage", function() {
+    var page = "#" + $( this ).attr( "id" ),
+        // Get the filename of the next page that we stored in the data-next attribute
+        next = $( this ).jqmData( "next" ),
+        // Get the filename of the previous page that we stored in the data-prev attribute
+        prev = $( this ).jqmData( "prev" );
+    // Check if we did set the data-next attribute
+    if ( next ) {
+        // Prefetch the next page
+        $.mobile.loadPage( "#" + next );
+        // Navigate to next page on swipe left
+        $( document ).on( "swipeleft", page, function() {
+            $.mobile.changePage(  "#" + next , { transition: "slide" });
+        });
+        // Navigate to next page when the "next" button is clicked
+        $( ".control .next", page ).on( "click", function() {
+            $.mobile.changePage(  "#" + next , { transition: "slide" } );
+        });
+    }
+    // Disable the "next" button if there is no next page
+    else {
+        $( ".control .next", page ).addClass( "ui-disabled" );
+    }
+    // The same for the previous page (we set data-dom-cache="true" so there is no need to prefetch)
+    if ( prev ) {
+        $( document ).on( "swiperight", page, function() {
+            $.mobile.changePage( "#" + prev , { transition: "slide", reverse: true } );
+        });
+        $( ".control .prev", page ).on( "click", function() {
+            $.mobile.changePage( "#" + prev, { transition: "slide", reverse: true } );
+        });
+    }
+    else {
+        $( ".control .prev", page ).addClass( "ui-disabled" );
+    }
+});
+
 
