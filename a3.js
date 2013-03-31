@@ -37,10 +37,15 @@ function makeContent(data, id, tweetid){
 		var href = $(this).attr("href");
 		var id = href.substr(href.indexOf("et") + 2) ;
 		if($("#tweet"+id).length < 1){
-			$("body").append("<div data-role='dialog' id='tweet"+id+"'><div data-role='header'><h1 role='heading'> something in here</h1></div><div class='tweetDetails' data-role='content'><div class='tweetPics'></div><div class='tweetUrls'></div></div></div>");
+			$("body").append("<div data-role='dialog' id='tweet"+id+"'><div data-role='header'><h1>Tweet Details</h1></div>"
+			+"<div class='tweetDetails' data-role='content'><div class='tweetInfo'></div>"
+			+"<div data-role='collapsible-set' >"
+			+"<div data-role='collapsible'><h3>Tweet Info</h3><div class='tweetPics'></div><div class='tweetUrls'></div></div>"
+			+"<div data-role='collapsible'><h3>User Info</h3><div class='userPic'></div><div class='userInfo'></div></div>"
+			+"</div></div>");
 			//$("#tweet"+id+" .tweetDetails").append("<div class='tweetPic'><img src=''></div>");
 			//var imgUrl = readData[id].entities.media.expanded_url;
-		
+			$("#tweet"+id+" .tweetDetails .tweetInfo").append(readData[id].text);
 			if(readData[id].entities.media != undefined){
 				for(var ind in readData[id].entities.media){
 					var curUrl = readData[id].entities.media[ind].media_url;
@@ -55,9 +60,33 @@ function makeContent(data, id, tweetid){
 					$("#tweet"+id+" .tweetDetails .tweetUrls").append("<a href='"+curUrl+"'>"+dispUrl+"</a>");
 				}
 			}
-			
+			$("#tweet"+id+" .tweetDetails .userPic").append("<img height='50px' width='50px' src='"+readData[id].user.profile_image_url+"'/>");
+			var userLocation= "";	
+			if(readData[id].user.location != undefined && readData[id].user.location!=""){
+					userLocation = "<br>Location: "+readData[id].user.location;
+				}		
+			var userUrl = "";
+			if(readData[id].user.url != undefined){
+					userUrl = "<br><a href='"+readData[id].user.url+"'>"+readData[id].user.url+"</a>";
+				}
+			var userDesc = "";
+			if(readData[id].user.description != undefined && readData[id].user.description != ""){
+					userDesc = "<div>"+readData[id].user.description+"</div>"
+				}
+			var userFollowers = "";
+			if(readData[id].user.followers_count != undefined){
+					userFollowers = "<div>Followers: "+readData[id].user.followers_count+"</div>"
+				}
+			var userFriends = "";
+			if(readData[id].user.friends_count != undefined){
+					userFriends = "<div>Friends: "+readData[id].user.friends_count+"</div>"
+				}
+			var userListed = "";
+			if(readData[id].user.listed_count != undefined){
+					userListed = "<div>Listed: "+readData[id].user.listed_count+"</div>"
+				}
+			$("#tweet"+id+" .tweetDetails .userInfo").append("<h3>"+readData[id].user.screen_name+"</h3><div>Name:"+readData[id].user.name+userLocation+userUrl+"</div>"+userDesc+userFollowers+userFriends+userListed);
 		}
-		
 		$.mobile.changePage(href,  'pop', false, true);
 	});
 //Stuff we need
@@ -81,3 +110,4 @@ function endPage( id){
 		$("#page"+id+" > .pageFooter").append("<a href='#page"+i+"'>"+i+"</a>");
 	}
 }
+
